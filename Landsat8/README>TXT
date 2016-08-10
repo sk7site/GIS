@@ -1,1 +1,8 @@
 This folder contains files related with Landsat 8 image processing.
+
+PyQGIS scripts for graphical modeler to process Landsat 8 images:
+* Landsat8ReadBandParameters.py - scripts reads Landsat 8 metafile and returns N band parameters;
+* Landsat8ReadImageParameters.py - scripts reads Landsat 8 metafile and returns common parameters: {sun elevation, sun distance};
+* DNToToaReflectance.py - script converts DN values of Landsat 8 image to Toa Reflectance with sun elevation correction;
+* NDVI.py - script calculates NDVI.
+
