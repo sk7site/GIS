@@ -1,0 +1,213 @@
+{
+    "values": {
+        "inputs": {
+            "NUMBER_BAND": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 45.0, 
+                            "x": 342.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "NUMBER_BAND", 
+                            "min": 1, 
+                            "default": 1, 
+                            "max": 11, 
+                            "value": null, 
+                            "hidden": false, 
+                            "isInteger": true, 
+                            "description": "Band"
+                        }, 
+                        "class": "processing.core.parameters.ParameterNumber"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "RASTERLAYER_IMAGE": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 142.0, 
+                            "x": 608.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "RASTERLAYER_IMAGE", 
+                            "showSublayersDialog": true, 
+                            "value": null, 
+                            "exported": null, 
+                            "hidden": false, 
+                            "optional": false, 
+                            "description": "Image"
+                        }, 
+                        "class": "processing.core.parameters.ParameterRaster"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }, 
+            "FILE_LANDSAT8METAFILE": {
+                "values": {
+                    "pos": {
+                        "values": {
+                            "y": 46.0, 
+                            "x": 119.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "param": {
+                        "values": {
+                            "isAdvanced": false, 
+                            "name": "FILE_LANDSAT8METAFILE", 
+                            "isFolder": false, 
+                            "value": null, 
+                            "ext": null, 
+                            "hidden": false, 
+                            "optional": true, 
+                            "description": "Landsat8 Metafile"
+                        }, 
+                        "class": "processing.core.parameters.ParameterFile"
+                    }
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.ModelerParameter"
+            }
+        }, 
+        "helpContent": {}, 
+        "group": "Landsat8", 
+        "name": "DNtoReflectance", 
+        "algs": {
+            "SCRIPTDNTOTOAREFLECTANCE_1": {
+                "values": {
+                    "name": "SCRIPTDNTOTOAREFLECTANCE_1", 
+                    "paramsFolded": true, 
+                    "outputs": {
+                        "outImage": {
+                            "values": {
+                                "description": "ToaReflectance(surface and atmospheric reflectance)", 
+                                "pos": {
+                                    "values": {
+                                        "y": 304.0, 
+                                        "x": 621.0
+                                    }, 
+                                    "class": "point"
+                                }
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ModelerOutput"
+                        }
+                    }, 
+                    "outputsFolded": true, 
+                    "pos": {
+                        "values": {
+                            "y": 257.0, 
+                            "x": 415.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "dependencies": [], 
+                    "params": {
+                        "inImage": {
+                            "values": {
+                                "name": "RASTERLAYER_IMAGE"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "sun_elevation": {
+                            "values": {
+                                "alg": "SCRIPTLANDSAT8READIMAGEPARAMETERS_1", 
+                                "output": "sun_elevation"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "reflectance_add": {
+                            "values": {
+                                "alg": "SCRIPTLANDSAT8READBANDPARAMETERS_1", 
+                                "output": "reflectance_add"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }, 
+                        "reflectance_mult": {
+                            "values": {
+                                "alg": "SCRIPTLANDSAT8READBANDPARAMETERS_1", 
+                                "output": "reflectance_mult"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromOutput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "script:dntotoareflectance", 
+                    "description": "DNtoToaReflectance"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SCRIPTLANDSAT8READBANDPARAMETERS_1": {
+                "values": {
+                    "name": "SCRIPTLANDSAT8READBANDPARAMETERS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 143.0, 
+                            "x": 158.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "metafile": {
+                            "values": {
+                                "name": "FILE_LANDSAT8METAFILE"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }, 
+                        "band": {
+                            "values": {
+                                "name": "NUMBER_BAND"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "script:landsat8readbandparameters", 
+                    "description": "Landsat8ReadBandParameters"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }, 
+            "SCRIPTLANDSAT8READIMAGEPARAMETERS_1": {
+                "values": {
+                    "name": "SCRIPTLANDSAT8READIMAGEPARAMETERS_1", 
+                    "paramsFolded": true, 
+                    "outputs": {}, 
+                    "pos": {
+                        "values": {
+                            "y": 142.0, 
+                            "x": 376.0
+                        }, 
+                        "class": "point"
+                    }, 
+                    "outputsFolded": true, 
+                    "dependencies": [], 
+                    "params": {
+                        "metafile": {
+                            "values": {
+                                "name": "FILE_LANDSAT8METAFILE"
+                            }, 
+                            "class": "processing.modeler.ModelerAlgorithm.ValueFromInput"
+                        }
+                    }, 
+                    "active": true, 
+                    "consoleName": "script:landsat8readimageparameters", 
+                    "description": "landsat8ReadImageParameters"
+                }, 
+                "class": "processing.modeler.ModelerAlgorithm.Algorithm"
+            }
+        }
+    }, 
+    "class": "processing.modeler.ModelerAlgorithm.ModelerAlgorithm"
+}
