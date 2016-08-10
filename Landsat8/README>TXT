@@ -1,5 +1,8 @@
 This folder contains files related with Landsat 8 image processing.
 
+QGIS models created by graphical modeler:
+* DNtoReflectance.model - converts DN values to TOA reflectance with sun elevation correction. 
+
 PyQGIS scripts for graphical modeler to process Landsat 8 images:
 * Landsat8ReadBandParameters.py - scripts reads Landsat 8 metafile and returns N band parameters;
 * Landsat8ReadImageParameters.py - scripts reads Landsat 8 metafile and returns common parameters: {sun elevation, sun distance};
